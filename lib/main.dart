@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sensor_app_iot/models/plant.dart';
 
 void main() {
   runApp(SenseApp());
@@ -29,9 +30,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Sense'),
-      ),
+      appBar: AppBar(title: Text('Sense')),
       body: _buildBody(),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
@@ -41,21 +40,15 @@ class _MainScreenState extends State<MainScreen> {
           });
         },
         items: [
+          BottomNavigationBarItem(icon: Icon(Icons.spa), label: 'Plants'),
+          BottomNavigationBarItem(icon: Icon(Icons.spa), label: 'Devices'),
           BottomNavigationBarItem(
-            icon: Icon(Icons.spa),
-            label: 'Plants',
-          ),
-            BottomNavigationBarItem(
-            icon: Icon(Icons.spa),
-            label: 'Devices',
-          ),
-            BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             label: 'Settings',
           ),
         ],
-    ),
-  );
+      ),
+    );
   }
 
   Widget _buildBody() {
@@ -68,9 +61,9 @@ class _MainScreenState extends State<MainScreen> {
         return SettingsScreen();
       default:
         return PlantListScreen();
-      }
     }
   }
+}
 
 class PlantListScreen extends StatelessWidget {
   @override
@@ -81,19 +74,19 @@ class PlantListScreen extends StatelessWidget {
         'name': 'Fiddle Leaf Fig',
         'moisture': 65,
         'lastWatered': '2 days ago',
-        'status': 'Healthy'
+        'status': 'Healthy',
       },
       {
         'name': 'Snake Plant',
         'moisture': 30,
         'lastWatered': '5 days ago',
-        'status': 'Needs water'
+        'status': 'Needs water',
       },
       {
         'name': 'Monstera',
         'moisture': 50,
         'lastWatered': '3 days ago',
-        'status': 'Healthy'
+        'status': 'Healthy',
       },
     ];
 
@@ -102,6 +95,7 @@ class PlantListScreen extends StatelessWidget {
       itemCount: plants.length,
       itemBuilder: (context, index) {
         final plant = plants[index];
+
         return Card(
           margin: EdgeInsets.only(bottom: 16.0),
           child: Padding(
@@ -126,7 +120,9 @@ class PlantListScreen extends StatelessWidget {
                             value: (plant['moisture'] as int) / 100,
                             backgroundColor: Colors.grey[200],
                             valueColor: AlwaysStoppedAnimation<Color>(
-                              (plant['moisture'] as int) < 40 ? Colors.red : Colors.green,
+                              (plant['moisture'] as int) < 40
+                                  ? Colors.red
+                                  : Colors.green,
                             ),
                           ),
                         ],
@@ -145,7 +141,10 @@ class PlantListScreen extends StatelessWidget {
                 SizedBox(height: 8),
                 Chip(
                   label: Text(plant['status'] as String),
-                  backgroundColor: (plant['status'] == 'Healthy') ? Colors.green[100] : Colors.red[100],
+                  backgroundColor:
+                      (plant['status'] == 'Healthy')
+                          ? Colors.green[100]
+                          : Colors.red[100],
                 ),
               ],
             ),
@@ -159,17 +158,13 @@ class PlantListScreen extends StatelessWidget {
 class DeviceListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Devices Screen'),
-    );
+    return Center(child: Text('Devices Screen'));
   }
 }
 
 class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Settings Screen'),
-    );
+    return Center(child: Text('Settings Screen'));
   }
 }
