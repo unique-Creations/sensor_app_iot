@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sensor_app_iot/models/plant.dart';
+import 'package:sensor_app_iot/screens/devicelist.dart';
+import 'package:sensor_app_iot/screens/settings.dart';
 
 void main() {
   runApp(SenseApp());
@@ -152,19 +153,5 @@ class PlantListScreen extends StatelessWidget {
         );
       },
     );
-  }
-}
-
-class DeviceListScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('Devices Screen'));
-  }
-}
-
-class SettingsScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('Settings Screen'));
   }
 }
